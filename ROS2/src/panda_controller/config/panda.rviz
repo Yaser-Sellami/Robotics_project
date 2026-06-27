@@ -1,0 +1,31 @@
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+  - Class: rviz_common/Views
+    Name: Views
+Visualization Manager:
+  Displays:
+    - Alpha: 1
+      Class: rviz_default_plugins/RobotModel
+      Description Topic:
+        Value: /robot_description
+      Enabled: true
+      Name: RobotModel
+      Visual Enabled: true
+    - Class: rviz_default_plugins/Path
+      Enabled: true
+      Name: EE Path
+      Topic:
+        Value: /ee_path
+      Color: 255; 0; 0
+      Line Style:
+        Value: Lines
+  Global Options:
+    Fixed Frame: fer_link0
+    Frame Rate: 30
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 2.0
+      Pitch: 0.5
+      Yaw: 0.8

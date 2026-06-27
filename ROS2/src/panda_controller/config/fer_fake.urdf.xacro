@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="fer">
+
+  <xacro:include filename="$(find franka_description)/robots/common/franka_robot.xacro"/>
+
+  <xacro:franka_robot arm_id="fer"
+                      joint_limits="${xacro.load_yaml('$(find franka_description)/robots/fer/joint_limits.yaml')}"
+                      inertials="${xacro.load_yaml('$(find franka_description)/robots/fer/inertials.yaml')}"
+                      kinematics="${xacro.load_yaml('$(find franka_description)/robots/fer/kinematics.yaml')}"
+                      dynamics="${xacro.load_yaml('$(find franka_description)/robots/fer/dynamics.yaml')}"
+                      hand="false"
+                      ros2_control="false"
+                      gazebo="false"
+                      connected_to="world">
+  </xacro:franka_robot>
+
+  <!-- Mock hardware with position interface — mirrors commanded positions to states -->
+  <ros2_control name="FakePandaSystem" type="system">
+    <hardware>
+      <plugin>mock_components/GenericSystem</plugin>
+    </hardware>
+    <joint name="fer_joint1">
+      <command_interface name="position"/>
+      <state_interface name="position"><param name="initial_value">0.0</param></state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="fer_joint2">
+      <command_interface name="position"/>
+      <state_interface name="position"><param name="initial_value">0.0</param></state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="fer_joint3">
+      <command_interface name="position"/>
+      <state_interface name="position"><param name="initial_value">0.0</param></state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="fer_joint4">
+      <command_interface name="position"/>
+      <state_interface name="position"><param name="initial_value">${-pi/2}</param></state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="fer_joint5">
+      <command_interface name="position"/>
+      <state_interface name="position"><param name="initial_value">0.0</param></state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="fer_joint6">
+      <command_interface name="position"/>
+      <state_interface name="position"><param name="initial_value">${pi/2}</param></state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="fer_joint7">
+      <command_interface name="position"/>
+      <state_interface name="position"><param name="initial_value">${pi/4}</param></state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+  </ros2_control>
+
+</robot>
